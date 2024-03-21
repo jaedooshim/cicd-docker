@@ -1,6 +1,7 @@
-FROM node:18
+FROM node:18-alpine
 RUN mkdir -p /var/app
 WORKDIR /var/app
+ADD . /app/
 COPY . .
 RUN npm install
 RUN npm run build
