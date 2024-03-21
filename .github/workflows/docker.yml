@@ -32,4 +32,12 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          script: whoami
+          script: |
+            whoami
+            sudo docker stop $(sudo docker ps -aq)
+            sudo docker container rm -f $(sudo docker container ls -aq)
+            sudo docker image rm -f $(sudo docker image ls -q)
+            sudo docker pull shimjaedoo/cicdnest:latest
+            sudo docker run -it -d -p 3000:3000 shimjaedoo/cicdnest
+            
+
