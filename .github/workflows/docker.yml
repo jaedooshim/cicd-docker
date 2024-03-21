@@ -34,9 +34,9 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             whoami
-            docker stop $(sudo docker ps -aq)
-            docker container rm -f $(sudo docker container ls -aq)
-            docker image rm -f $(sudo docker image ls -q)
+            docker stop $(docker ps -aq)
+            docker container rm -f $(docker container ls -aq)
+            docker image rm -f $(docker image ls -q)
             docker pull shimjaedoo/cicdnest:latest
             docker run -it -d -p 3000:3000 shimjaedoo/cicdnest
             
